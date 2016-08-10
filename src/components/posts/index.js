@@ -7,6 +7,7 @@ import { Link } from 'react-router';
 
 class PostIndex extends Component {
 
+
   componentWillMount(){
     console.log("good time to do something");
     this.props.fetchPosts();
@@ -20,7 +21,10 @@ class PostIndex extends Component {
             Add a Post
           </Link>
         </div>
-        List of blog Post I think
+        <h3>Posts</h3>
+        <ul className="list-group">
+          { this.renderPosts() }
+        </ul>
       </div>
     );
   }
@@ -30,4 +34,9 @@ function mapDispatchToProps( dispatch ) {
   return bindActionCreators( { fetchPosts }, dispatch );
 }
 
-export default connect( null, mapDispatchToProps )( PostIndex );
+
+function mapStateToProps( state ) {
+  return { posts :  state.posts.all }
+}
+
+export default connect(  mapStateToProps, mapDispatchToProps )( PostIndex );
