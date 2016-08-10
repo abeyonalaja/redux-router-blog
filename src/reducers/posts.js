@@ -8,6 +8,6 @@ export default function(state = INITAIL_STATE, action) {
     case FETCH_POSTS:
       return { ...state, all : action.payload.data }
     default:
-    return state;
+      return state;
   }
 }
